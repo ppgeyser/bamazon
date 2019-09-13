@@ -1,7 +1,7 @@
 //dependencies
+require("dotenv").config();
 var mysql = require("mysql");
 var inquirer = require("inquirer");
-require("dotenv").config();
 
 //connection config
 var connection = mysql.createConnection({
@@ -15,20 +15,49 @@ var connection = mysql.createConnection({
 
     // Your password
     password: process.env.PASSWORD,
-    database: "top_songsDB"
+    database: "bamazonDB"
 });
 
-connection.connect(function(err) {
+connection.connect(function (err) {
     if (err) throw err;
     console.log("connected as id " + connection.threadId);
+    customerApp();
     connection.end();
-  });
+});
 
-  function customerApp() {
-      inquirer.prompt({
-          name: "storefront",
-          type: "list",
-          message: "Which item would you like to purchase?",
-          choices: ""
-      })
-  }
+function customerApp() {
+    connection.query("SELECT * FROM productsTB", function (err, results) {
+        if (err) throw err;
+
+        inquirer
+            .prompt([
+                {
+                    name: "choice",
+                    type: "rawlist",
+                    choices: function () {
+                        var choiceArray = [];
+                        for (var i = 0; i < results.length; i++) {
+                            choiceArray.push(results[i].product_name);
+                        }
+                        return choiceArray;
+                    },
+                    message: "What item would you like to purchase?"
+                },
+                {
+                    name: "quantity",
+                    type: "input",
+                    message: "How much would you like to buy?"
+                }
+            ])
+            .then(function (answer) {
+                // get the information of the chosen item
+                var chosenItem;
+                for (var i = 0; i < results.length; i++) {
+                    if (results[i].product_name === answer.choice) {
+                        chosenItem = results[i];
+                    }
+                }
+                console.log(chosenItem);
+            })
+    })
+}
