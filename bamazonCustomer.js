@@ -1,6 +1,9 @@
+//dependencies
 var mysql = require("mysql");
+var inquirer = require("inquirer");
 require("dotenv").config();
 
+//connection config
 var connection = mysql.createConnection({
     host: "localhost",
 
@@ -20,3 +23,12 @@ connection.connect(function(err) {
     console.log("connected as id " + connection.threadId);
     connection.end();
   });
+
+  function customerApp() {
+      inquirer.prompt({
+          name: "storefront",
+          type: "list",
+          message: "Which item would you like to purchase?",
+          choices: ""
+      })
+  }
