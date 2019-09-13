@@ -6,43 +6,48 @@ var inquirer = require("inquirer");
 //connection config
 var connection = mysql.createConnection({
     host: "localhost",
-
-    // Your port; if not 3306
     port: 3306,
-
-    // Your username
     user: "root",
-
-    // Your password
     password: process.env.PASSWORD,
     database: "bamazonDB"
 });
 
+//Start connection and run main app
 connection.connect(function (err) {
     if (err) throw err;
     console.log("connected as id " + connection.threadId);
     customerApp();
-    connection.end();
+
 });
 
+//main app
 function customerApp() {
     connection.query("SELECT * FROM productsTB", function (err, results) {
         if (err) throw err;
 
+        //Inquirer prompt to display in console
         inquirer
             .prompt([
+
+                //List of items available
                 {
                     name: "choice",
                     type: "rawlist",
                     choices: function () {
                         var choiceArray = [];
                         for (var i = 0; i < results.length; i++) {
-                            choiceArray.push(results[i].product_name);
+                            choiceArray.push(
+                                results[i].product_name +
+                                " || Price: $" +
+                                results[i].price
+                            );
                         }
                         return choiceArray;
                     },
                     message: "What item would you like to purchase?"
                 },
+
+                //determining desired quantity
                 {
                     name: "quantity",
                     type: "input",
@@ -57,7 +62,35 @@ function customerApp() {
                         chosenItem = results[i];
                     }
                 }
-                console.log(chosenItem);
+
+                // console.log(chosenItem);
+
+                // determine if there is sufficient stock
+                if (chosenItem.stock > parseInt(answer.quantity)) {
+
+                    var updatedQuantity = (chosenItem.stock - parseInt(answer.quantity));
+
+                    // There was sufficient stock, update db, let the user know, and end process
+                    var query = "UPDATE productsTB SET ? WHERE ?"
+                    connection.query(query,
+                        [{
+                                stock: updatedQuantity
+                            },
+                            {
+                                item_id: chosenItem.item_id
+                            }
+                        ],
+                        function (error) {
+                            if (error) throw error;
+                            console.log("Item purchased successfully!" + "\nTotal cost: $" + (parseInt(answer.quantity) * chosenItem.price).toFixed(2));
+                            connection.end();
+                        }
+                    );
+                } else {
+                    // Insufficient stock, so end process
+                    console.log("Stock: " + chosenItem.stock + "\nInsufficient stock, please try again");
+                    connection.end();
+                }
             })
     })
 }
