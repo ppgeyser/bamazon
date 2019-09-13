@@ -56,9 +56,15 @@ function customerApp() {
             ])
             .then(function (answer) {
                 // get the information of the chosen item
+                var choice = answer.choice;
+
+                //replace all characters after "|" with empty string and then trim spaces
+                choice = choice.replace(/\|.*/,'').trim();
+                console.log(choice);
+
                 var chosenItem;
                 for (var i = 0; i < results.length; i++) {
-                    if (results[i].product_name === answer.choice) {
+                    if (results[i].product_name === choice) {
                         chosenItem = results[i];
                     }
                 }
