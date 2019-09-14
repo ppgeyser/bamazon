@@ -1,6 +1,6 @@
 # Bamazon (Bootcamp Amazon)
 
-Bamazon is a command line node app that simulates a digital storefront. Users can either roleplay as a customer and purchase items or as a manager and view all inventory, low inventory, increase the stock of specific items, and even add new items to inventory. This is my seventh project for the UCSD Full Stack Developer Bootcamp and demonstrates my ability to use CRUD functions on a sql database.
+Bamazon is a command line node app that simulates a digital storefront. Users can either roleplay as a customer and purchase items or as a manager and view all inventory, low inventory, increase the stock of specific items, and even add new items to inventory. This is my seventh project for the UCSD Full Stack Developer Bootcamp and demonstrates my ability to use CRUD (Create, Read, Update, Delete) functions on a SQL database.
 
 ## Running the app
 
