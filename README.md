@@ -64,4 +64,4 @@ To run this app, you will need to first initialize a SQL database. [Here is a gu
 
 Assuming that you set up your SQL database so that the host=localhost, port=3306, and user=root, you will also need to create a .env file in the root of the bamazon directory after you have cloned the repository. Inside of the .env file, you will need to write `PASSWORD=example`, where "example" is the password you have set up for your SQL Database.
 
-From there, you can run `npm install` from the bamazon directory to grab the required dependancies, and the bamazon app should be good to go from there.
+From there, you can run `npm install` from your cli in the bamazon directory to grab the required dependancies, and the bamazon app should be good to go from there!
