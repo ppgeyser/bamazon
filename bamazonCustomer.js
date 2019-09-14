@@ -99,13 +99,13 @@ function customerApp() {
                                 function (error) {
                                     if (error) throw error;
                                     console.log("Item purchased successfully!" + "\nTotal cost: $" + (parseInt(answer.quantity) * chosenItem.price).toFixed(2));
-                                    connection.end();
+                                    customerApp();
                                 }
                             );
                         } else {
                             // Insufficient stock, so end process
                             console.log("Stock: " + chosenItem.stock + "\nInsufficient stock, please try again");
-                            connection.end();
+                            customerApp();
                         }
                     })
                 }
