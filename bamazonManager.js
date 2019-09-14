@@ -71,4 +71,20 @@ function productView() {
         }
         connection.end();
     })
+};
+
+function productViewLow() {
+    connection.query("SELECT * FROM productsTB WHERE stock < 6", function (err, results) {
+        if (err) throw err;
+
+        for (var i = 0; i < results.length; i++) {
+            console.log(
+                results[i].item_id + 
+                ") " + results[i].product_name +
+                " | Price: " + results[i].price + 
+                " | Quantity: " + results[i].stock
+                )
+        }
+        connection.end();
+    })   
 }
