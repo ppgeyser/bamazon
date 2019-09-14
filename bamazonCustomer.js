@@ -40,7 +40,7 @@ function customerApp() {
                             //Adding choice and item price to array as a string
                             choiceArray.push(
                                 results[i].product_name +
-                                " || Price: $" +
+                                " | Price: $" +
                                 results[i].price
                             );
                         }
