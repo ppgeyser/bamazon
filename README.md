@@ -2,6 +2,14 @@
 
 Bamazon is a command line node app that simulates a digital storefront. Users can either roleplay as a customer and purchase items or as a manager and view all inventory, low inventory, increase the stock of specific items, and even add new items to inventory. This is my seventh project for the UCSD Full Stack Developer Bootcamp and demonstrates my ability to use CRUD (Create, Read, Update, Delete) functions on a SQL database.
 
+## Initializing the app
+
+To run this app, you will need to first initialize a SQL database. [Here is a guide on how to do that](https://dev.mysql.com/doc/workbench/en/). I have provided a schema as well as some seed data that you can use in order to populate the database.
+
+Assuming that you set up your SQL database so that the host=localhost, port=3306, and user=root, you will also need to create a .env file in the root of the bamazon directory after you have cloned the repository. Inside of the .env file, you will need to write `PASSWORD=example`, where "example" is the password you have set up for your SQL Database.
+
+From there, you can run `npm install` from your cli in the bamazon directory to grab the required dependancies, and the bamazon app should be good to go from there!
+
 ## Running the app
 
 There are two modes that are available, customer and manager.
@@ -57,11 +65,3 @@ Selecting "Add A New Product" will guide you through a series of questions so th
 Once you have gone through all the questions, you will get a confirmation stating that your item has been added successfully. When you run "View Products For Sale" again, you will now see the new item you have added to your inventory.
 
 <img width="1004" alt="Screen Shot 2019-09-13 at 10 00 38 PM" src="https://user-images.githubusercontent.com/50184318/64903875-016e4680-d676-11e9-9c06-a0cea0f7faa7.png">
-
-## Initializing the app
-
-To run this app, you will need to first initialize a SQL database. [Here is a guide on how to do that](https://dev.mysql.com/doc/workbench/en/). I have provided a schema as well as some seed data that you can use in order to populate the database.
-
-Assuming that you set up your SQL database so that the host=localhost, port=3306, and user=root, you will also need to create a .env file in the root of the bamazon directory after you have cloned the repository. Inside of the .env file, you will need to write `PASSWORD=example`, where "example" is the password you have set up for your SQL Database.
-
-From there, you can run `npm install` from your cli in the bamazon directory to grab the required dependancies, and the bamazon app should be good to go from there!
