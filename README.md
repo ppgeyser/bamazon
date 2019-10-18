@@ -1,6 +1,6 @@
 # Bamazon (Bootcamp Amazon)
 
-Bamazon is a command line node app that simulates a digital storefront. Users can either roleplay as a customer and purchase items or as a manager and view all inventory, low inventory, increase the stock of specific items, and even add new items to inventory. This is my seventh project for the UCSD Full Stack Developer Bootcamp and demonstrates my ability to use CRUD (Create, Read, Update, Delete) functions on a SQL database.
+Bamazon is a command line node app that simulates a digital storefront. Users can either roleplay as a customer and purchase items or as a manager and view all inventory, low inventory, increase the stock of specific items, and even add new items to inventory.
 
 ## Initializing the app
 
@@ -65,3 +65,6 @@ Selecting "Add A New Product" will guide you through a series of questions so th
 Once you have gone through all the questions, you will get a confirmation stating that your item has been added successfully. When you run "View Products For Sale" again, you will now see the new item you have added to your inventory.
 
 <img width="1004" alt="Screen Shot 2019-09-13 at 10 00 38 PM" src="https://user-images.githubusercontent.com/50184318/64903875-016e4680-d676-11e9-9c06-a0cea0f7faa7.png">
+
+
+This is my second backend project using node.js, demonstrates my knowledge of MySQL, and my ability to perform CRUD (Create, Read, Update, Delete) operations on a database.
